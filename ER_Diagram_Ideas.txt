@@ -1,0 +1,14 @@
+Information Holding Entities:
+Product
+Customer
+Employee
+Inventory
+Shopping_Cart
+Order_List
+(Feel free to add as you feel necessary)
+
+
+Relationships to consider
+Customer and Employee are both types of a kind of User
+Products are listed in the Inventory
+Inventory should be accessible to Customers and Employees (different Privileges and views may be necessary.)
