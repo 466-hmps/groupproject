@@ -1,0 +1,79 @@
+DROP TABLE IF EXISTS ORDERINFO, CART, CUSTOMER, EMPLOYEE, PRODUCT, USER;
+
+CREATE TABLE USER (
+	Email VARCHAR(30) NOT NULL, -- Primary Key for user table, Email of user
+	Name VARCHAR(20) NOT NULL, -- Name of user
+	Address VARCHAR(100) NOT NULL, -- Address of user
+
+	PRIMARY KEY(Email) -- Primary key Email
+);
+
+CREATE TABLE PRODUCT (
+	ProdID VARCHAR(3) NOT NULL, -- Primary Key for Product Table, Product ID string
+	Title VARCHAR(15) NOT NULL, -- Name of product in store
+	Weight DECIMAL(3,2) NOT NULL, -- Weight of purchasing option
+	Price DECIMAL(4,2) NOT NULL, -- Price of product option
+	QTY INT NOT NULL, -- Amount of Product available in Inventory
+
+	PRIMARY KEY(ProdID) -- Primary Key Product ID string
+);
+
+CREATE TABLE EMPLOYEE (
+	EmpID VARCHAR(5) NOT NULL, -- Primary Key of Employee table, Employee ID string
+	Email VARCHAR(30) NOT NULL, -- Foreign key from User table, email of employee
+
+	PRIMARY KEY(EmpID), -- Primary Key EmpID
+	FOREIGN KEY(Email) REFERENCES USER(Email) -- Foreign key to Email in user table
+);
+
+CREATE TABLE CUSTOMER (
+	Email VARCHAR(30) NOT NULL, -- Primary Key for customer table, email of customer
+	BillingInfo VARCHAR(50) NOT NULL, -- Billing information of user
+
+	PRIMARY KEY(Email), -- Primary Key Email
+	FOREIGN KEY(Email) REFERENCES USER(Email) -- Foreign key email from USER table
+);
+
+CREATE TABLE CART (
+	Email VARCHAR(30) NOT NULL, -- Primary Key for cart table, Email string
+	ProdID VARCHAR(3) NOT NULL, -- Primary Key for cart table, ProdID
+	Amt INT NOT NULL, -- Amount to be ordered by user
+
+	PRIMARY KEY(Email, ProdID), -- Primary Keys Email and ProdID
+	FOREIGN KEY(Email) REFERENCES CUSTOMER(Email), -- Foreign key to email in customer table
+	FOREIGN KEY(ProdID) REFERENCES PRODUCT(ProdID) -- Foreign key to ProdID in product table
+);
+
+CREATE TABLE ORDERINFO (
+	Email VARCHAR(30) NOT NULL, -- Primary Key for Order table, Email string
+	ProdID VARCHAR(3) NOT NULL, -- Primary Key for Order tbale, ProdID string
+	Amt INT NOT NULL, -- Amount ordered and needing to be shipped
+	Processed BOOL NOT NULL, -- Bool for whether the order is being processed or not
+	Shipped BOOL NOT NULL, -- Bool for whether order has been shipped or not
+
+	PRIMARY KEY(Email, ProdID), -- Primary Keys Email and ProdID
+	FOREIGN KEY(Email) REFERENCES CUSTOMER(Email), -- Foreign Key to Email from customer table
+	FOREIGN KEY(ProdID) REFERENCES PRODUCT(ProdID) -- Foreign key to ProdID from product table
+);
+
+------------------------------------------------------ DONE CREATING TABLES
+INSERT INTO USER(Email, Name, Address) VALUES('testemail@aol.com', 'Test User', 'Test address Test Drive, Test city, state, zip, country');
+
+INSERT INTO USER(Email, Name, Address) VALUES('marrugaloo@gmail.com', 'Michael Marrougi', 'None ya business, my city, IL, 12345, Merica');
+
+INSERT INTO USER(Email, Name, Address) VALUES('lehuta@faculty.niu.edu', 'Jon Lehuta', 'Somewhere here in, DeKalb, IL, 60115, USA');
+
+INSERT INTO EMPLOYEE(EmpID, Email) VALUES('00001', 'marrugaloo@gmail.com');
+
+INSERT INTO CUSTOMER(Email, BillingInfo) VALUES('testemail@aol.com', '0000 0000 0000 0001 12/99 123');
+
+INSERT INTO PRODUCT(ProdID, Title, Weight, Price, QTY) VALUES('B01', 'Ground Beef', '1.00', '9.99', '20');
+
+INSERT INTO PRODUCT(ProdID, Title, Weight, Price, QTY) VALUES('P01', 'Pork Chop', '3.00', '6.99', '10');
+
+INSERT INTO PRODUCT(ProdID, Title, Weight, Price, QTY) VALUES('C01', 'Chicken Breast', '2.00', '8.99', '6');
+
+INSERT INTO PRODUCT(ProdID, Title, Weight, Price, QTY) VALUES('T01', 'Ground Turkey', '0.50', '5.99', '4');
+
+INSERT INTO PRODUCT(ProdID, Title, Weight, Price, QTY) VALUES('F01', 'Salmon Filet', '5.00', '19.99', '17');
+------------------------------------------------------ DONE INSERTING VALUES
