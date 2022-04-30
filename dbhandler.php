@@ -26,26 +26,65 @@ function AllProducts() {
 }
 
 function AddProduct($ProdID, $Title, $Weight, $Price, $qty) {
-	//
+	global $pdo;
+	$query = 'INSERT INTO PRODUCT (ProdID, Title, Weight, Price, QTY) VALUES (:pid, :title, :wght, :price, :qty);';
+    $statement = $pdo->prepare($query);
+	$statement->bindValue(':pid', $ProdID);
+	$statement->bindValue(':title', $Title);
+	$statement->bindValue(':wght', $Weight);
+	$statement->bindValue(':price',$Price);
+	$statement->bindValue(':qty',$qty);
+	$statement->execute();
+    $results = $statement->fetchAll();
+    $statement->closeCursor();
 }
 
-function ModifyProductTitle() {
-	//
+function ModifyProductTitle($ProdID, $Title) {
+	global $pdo;
+	$query = 'UPDATE PRODUCT SET Title = :title WHERE ProdID = :pid ;';
+    $statement = $pdo->prepare($query);
+	$statement->bindValue(':pid', $ProdID);
+	$statement->bindValue(':title', $Title);
+	$statement->execute();
+    $statement->closeCursor();
 }
 
-function ModifyProductWeight() {
-	//
+function ModifyProductWeight($ProdID, $Weight) {
+	global $pdo;
+	$query = 'UPDATE PRODUCT SET Weight = :wght WHERE ProdID = :pid ;';
+    $statement = $pdo->prepare($query);
+	$statement->bindValue(':pid', $ProdID);
+	$statement->bindValue(':wght', $Weight);
+	$statement->execute();
+    $statement->closeCursor();
 }
 
-function ModifyProductPrice() {
-	//
+function ModifyProductPrice($ProdID, $Price) {
+	global $pdo;
+	$query = 'UPDATE PRODUCT SET Price = :price WHERE ProdID = :pid ;';
+    $statement = $pdo->prepare($query);
+	$statement->bindValue(':pid', $ProdID);
+	$statement->bindValue(':price', $Price);
+	$statement->execute();
+    $statement->closeCursor();
 }
-function ModifyProductQty() {
-	//
+function ModifyProductQty($ProdID, $Qty) {
+	global $pdo;
+	$query = 'UPDATE PRODUCT SET Qty = :qty WHERE ProdID = :pid ;';
+    $statement = $pdo->prepare($query);
+	$statement->bindValue(':pid', $ProdID);
+	$statement->bindValue(':qty', $Qty);
+	$statement->execute();
+    $statement->closeCursor();
 }
 
-function RemoveProduct() {
-	//
+function RemoveProduct($ProdID) {
+	global $pdo;
+	$query = 'DELETE FROM PRODUCT WHERE ProdID = :prod ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':prod',$ProdID);
+	$statement->execute();
+	$statement->closeCursor();
 }
 
 /** Cart Functions:
@@ -57,7 +96,15 @@ function RemoveProduct() {
  * Documentation will be provided where necessary line by line or in a comment block when necessary.
  */
 function AddToCart($Email, $ProdID, $Amt) {
-	//
+	global $pdo;
+	$query = 'INSERT INTO PRODUCT (Email, ProdID, Amt) VALUES (:eml, :pid, :amt);';
+    $statement = $pdo->prepare($query);
+	$statement->bindValue(':eml', $Email);
+	$statement->bindValue(':pid', $ProdID);
+	$statement->bindValue(':amt', $Amt);
+	$statement->execute();
+    $results = $statement->fetchAll();
+    $statement->closeCursor();
 }
 
 function ModifyCartQty($Email, $ProdID, $Amt) {
