@@ -97,30 +97,54 @@ function RemoveProduct($ProdID) {
  */
 function AddToCart($Email, $ProdID, $Amt) {
 	global $pdo;
-	$query = 'INSERT INTO PRODUCT (Email, ProdID, Amt) VALUES (:eml, :pid, :amt);';
+	$query = 'INSERT INTO CART (Email, ProdID, Amt) VALUES (:eml, :pid, :amt);';
     $statement = $pdo->prepare($query);
 	$statement->bindValue(':eml', $Email);
 	$statement->bindValue(':pid', $ProdID);
 	$statement->bindValue(':amt', $Amt);
 	$statement->execute();
-    $results = $statement->fetchAll();
     $statement->closeCursor();
 }
 
 function ModifyCartQty($Email, $ProdID, $Amt) {
-	//
+	global $pdo;
+	$query = 'UPDATE CART SET Amt = :amt WHERE Email = :email AND ProdID = :pid ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':email',$Email);
+	$statement->bindValue(':amt',$Amt);
+	$statement->bindValue(':pid',$ProdID);
+	$statement->execute();
+	$statement->closeCursor();
 }
 
 function RMFromCart($Email, $ProdID) {
-	//
+	global $pdo;
+	$query = 'DELETE FROM CART WHERE ProdID = :prod AND Email = :email ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':prod',$ProdID);
+	$statement->bindValue(':email',$Email);
+	$statement->execute();
+	$statement->closeCursor();
 }
 
-function ShowCart($Email, $ProdID) {
-	//
+function ShowCart($Email) {
+	global $pdo;
+	$query = 'SELECT * FROM CART WHERE Email = :email ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':email',$Email);
+	$statement->execute();
+	$results = $statement->fetchAll();
+	$statement->closeCursor();
+	return $results;
 }
 
 function ClearCart($Email, $ProdID) {
-	//
+	global $pdo;
+	$query = 'DELETE FROM CART WHERE Email = :email ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':email',$Email);
+	$statement->execute();
+	$statement->closeCursor();
 }
 
 /** Order Functions:
