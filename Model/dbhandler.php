@@ -163,16 +163,40 @@ function ClearCart($CustID, $ProdID) {
  * ModifyOrder - 
  * ShowOrder - 
  */
-function CreateOrder($CustID, $ProdID/*, $OrderID*/, $Amt, $Processed, $Shipped){
-	//
+function CreateOrder($CustID, $total){
+	global $pdo;
+	$query = 'INSERT INTO ORDERS (CustID, Total) VALUES ( :cid , :tot );';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':cid',$CustID);
+	$statement->bindValue(':tot',$total);
+	$statement->execute();
+	$statement->closeCursor();
 }
 
 function ModifyOrder() {
 	//
 }
 
-function ShowOrder() {
-	//
+function ShowOrder($orderID) {
+	global $pdo;
+	$query = 'SELECT * FROM ORDERITEMS WHERE OrderID = :ordid ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':ordid',$orderID);
+	$statement->execute();
+	$results = $statement->fetchAll();
+	$statement->closeCursor();
+	return $results;
+}
+
+function AddItemToOrder($OrderID, $ProdID, $Amt) {
+	global $pdo;
+	$query = 'INSERT INTO ORDERITEMS (OrderID, ProdID, Amt) VALUES ( :ordid , :pid, :amt );';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':cid',$OrderID);
+	$statement->bindValue(':pid',$ProdID);
+	$statement->bindValue(':amt',$Amt);
+	$statement->execute();
+	$statement->closeCursor();
 }
 
 /** User Functions:
