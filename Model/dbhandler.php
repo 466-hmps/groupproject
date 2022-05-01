@@ -25,17 +25,28 @@ function AllProducts() {
 	return $results;
 }
 
-function AddProduct($ProdID, $Title, $Weight, $Price, $qty) {
+function AddProduct($ProdID, $ProdType, $Title, $Weight, $Price, $qty) {
 	global $pdo;
-	$query = 'INSERT INTO PRODUCT (ProdID, Title, Weight, Price, QTY) VALUES (:pid, :title, :wght, :price, :qty);';
+	$query = 'INSERT INTO PRODUCT (ProdID, ProdType, Title, Weight, Price, QTY) VALUES (:pid, :prodt :title, :wght, :price, :qty);';
     $statement = $pdo->prepare($query);
 	$statement->bindValue(':pid', $ProdID);
+	$statement->bindValue(':prodt',$ProdType);
 	$statement->bindValue(':title', $Title);
 	$statement->bindValue(':wght', $Weight);
 	$statement->bindValue(':price',$Price);
 	$statement->bindValue(':qty',$qty);
 	$statement->execute();
     $results = $statement->fetchAll();
+    $statement->closeCursor();
+}
+
+function ModifyProductType($ProdID, $ProdType) {
+	global $pdo;
+	$query = 'UPDATE PRODUCT SET ProdType = :tp WHERE ProdID = :pid ;';
+    $statement = $pdo->prepare($query);
+	$statement->bindValue(':pid', $ProdID);
+	$statement->bindValue(':tp', $ProdType);
+	$statement->execute();
     $statement->closeCursor();
 }
 
@@ -95,54 +106,54 @@ function RemoveProduct($ProdID) {
  * ClearCart - takes in the custimer info, and clears all rows from their cart.
  * Documentation will be provided where necessary line by line or in a comment block when necessary.
  */
-function AddToCart($Email, $ProdID, $Amt) {
+function AddToCart($CustID, $ProdID, $Amt) {
 	global $pdo;
-	$query = 'INSERT INTO CART (Email, ProdID, Amt) VALUES (:eml, :pid, :amt);';
+	$query = 'INSERT INTO CART (CustID, ProdID, Amt) VALUES (:eml, :pid, :amt);';
     $statement = $pdo->prepare($query);
-	$statement->bindValue(':eml', $Email);
+	$statement->bindValue(':eml', $CustID);
 	$statement->bindValue(':pid', $ProdID);
 	$statement->bindValue(':amt', $Amt);
 	$statement->execute();
     $statement->closeCursor();
 }
 
-function ModifyCartQty($Email, $ProdID, $Amt) {
+function ModifyCartQty($CustID, $ProdID, $Amt) {
 	global $pdo;
-	$query = 'UPDATE CART SET Amt = :amt WHERE Email = :email AND ProdID = :pid ;';
+	$query = 'UPDATE CART SET Amt = :amt WHERE CustID = :CustID AND ProdID = :pid ;';
 	$statement = $pdo->prepare($query);
-	$statement->bindValue(':email',$Email);
+	$statement->bindValue(':CustID',$CustID);
 	$statement->bindValue(':amt',$Amt);
 	$statement->bindValue(':pid',$ProdID);
 	$statement->execute();
 	$statement->closeCursor();
 }
 
-function RMFromCart($Email, $ProdID) {
+function RMFromCart($CustID, $ProdID) {
 	global $pdo;
-	$query = 'DELETE FROM CART WHERE ProdID = :prod AND Email = :email ;';
+	$query = 'DELETE FROM CART WHERE ProdID = :prod AND CustID = :CustID ;';
 	$statement = $pdo->prepare($query);
 	$statement->bindValue(':prod',$ProdID);
-	$statement->bindValue(':email',$Email);
+	$statement->bindValue(':CustID',$CustID);
 	$statement->execute();
 	$statement->closeCursor();
 }
 
-function ShowCart($Email) {
+function ShowCart($CustID) {
 	global $pdo;
-	$query = 'SELECT * FROM CART WHERE Email = :email ;';
+	$query = 'SELECT * FROM CART WHERE CustID = :CustID ;';
 	$statement = $pdo->prepare($query);
-	$statement->bindValue(':email',$Email);
+	$statement->bindValue(':CustID',$CustID);
 	$statement->execute();
 	$results = $statement->fetchAll();
 	$statement->closeCursor();
 	return $results;
 }
 
-function ClearCart($Email, $ProdID) {
+function ClearCart($CustID, $ProdID) {
 	global $pdo;
-	$query = 'DELETE FROM CART WHERE Email = :email ;';
+	$query = 'DELETE FROM CART WHERE CustID = :CustID ;';
 	$statement = $pdo->prepare($query);
-	$statement->bindValue(':email',$Email);
+	$statement->bindValue(':CustID',$CustID);
 	$statement->execute();
 	$statement->closeCursor();
 }
@@ -152,7 +163,7 @@ function ClearCart($Email, $ProdID) {
  * ModifyOrder - 
  * ShowOrder - 
  */
-function CreateOrder($Email, $ProdID/*, $OrderID*/, $Amt, $Processed, $Shipped){
+function CreateOrder($CustID, $ProdID/*, $OrderID*/, $Amt, $Processed, $Shipped){
 	//
 }
 
