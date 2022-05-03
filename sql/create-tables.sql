@@ -5,7 +5,8 @@ CREATE TABLE USER (
 	ID INT AUTO_INCREMENT PRIMARY KEY, -- Primary key
 	Email VARCHAR(30) NOT NULL, -- Email of user
 	Name VARCHAR(20) NOT NULL, -- Name of user
-	Address VARCHAR(100) NOT NULL -- Address of user
+	Address VARCHAR(100) NOT NULL, -- Address of user
+	Password VARCHAR(100) NOT NULL -- User Password
 
 );
 
