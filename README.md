@@ -78,3 +78,39 @@ Additional challenges:
 	Design a wishlist system where users can add items they'd like to order at a later date.
 
 Check the PDF if you're unsure about something here.
+
+## Database Schema
+
+### ER Diagram
+![ER Diagram](docs/466_Group_ER.png)
+
+### ER Diagram Description
+[ER Diagram Description.docx](docs/ER Diagram Description.docx)
+
+### 3NF
+
+**USER** (<ins>ID</ins>, Email, Name, Address)
+
+**PRODUCT** (<ins>ProdID</ins>, ProdType, Title, Weight, Price, QTY)
+
+**EMPLOYEE** (<ins>EmpID&dagger;</ins>)
+
+* FOREIGN KEY(EmpID) REFERENCES USER(ID)
+
+**CUSTOMER** (<ins>CustID&dagger;</ins>, CardNum, CardExp, CVV)
+
+* FOREIGN KEY(CustID) REFERENCES USER(ID)
+
+**CART** (<ins>CustID&dagger;, ProdID&dagger;</ins>, Amt)
+
+* FOREIGN KEY(CustID) REFERENCES CUSTOMER(CustID)
+* FOREIGN KEY(ProdID) REFERENCES PRODUCT(ProdID)
+
+**ORDERS** (<ins>OrderID&dagger;, CustID&dagger;</ins>, Status, Total)
+
+* FOREIGN KEY(CustID) REFERENCES CUSTOMER(CustID)
+
+**ORDERITEMS** (<ins>OrderID&dagger;, ProdID&dagger;</ins>, Amt)
+
+* FOREIGN KEY(OrderID) REFERENCES ORDERS(OrderID)
+* FOREIGN KEY(ProdID) REFERENCES PRODUCT(ProdID)
