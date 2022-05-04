@@ -4,7 +4,7 @@ include '../partials/header.php';
 include '../partials/nav.php'; 
 ?>
 	<div class="login">
-		<form action="http://students.cs.niu.edu/~z1895440/466Final.php" method="POST">
+		<form method="POST">
 			<label for="uname"><b>Username</b></label>
 			<input type="text" placeholder="Enter Email" name="uemail" id="uname" required>
 			<label for="psw"><b>Password</b></label>
