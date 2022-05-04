@@ -1,3 +1,4 @@
+    <hr>
     <div class="nav fancytext">
         <ul class="navlist">
             <li>
@@ -17,3 +18,4 @@
             </li>
         </ul>
     </div>
+    <hr>
