@@ -8,7 +8,7 @@ include '../partials/nav.php';
     <h2>Beef</h2>
     <div class="grid-container">
       <div class="grid-item">
-      <img width="150" height="150" src="https://th.bing.com/th/id/OIP.icgRiypiusfGyTzJunCZQwHaE_?pid=ImgDet&rs=1" alt="Beef Products.">
+      <img width="150" height="150" src="img/beef.jpg" alt="Beef Products.">
       </div>
       <div class="grid-item"><p>Ground Beef. 85% Fat and 15% Lean.</p><p>Great for burgers or making burgers or meatballs.</p></div>
       <div class="grid-item">
@@ -21,7 +21,7 @@ include '../partials/nav.php';
     <h2>Pork</h2>
     <div class="grid-container">
       <div class="grid-item">
-      <img width="150" height="150" src="https://media.istockphoto.com/vectors/bacon-vector-id472319165?k=6&m=472319165&s=612x612&w=0&h=7jX5xgr1xpURA1VDmnEfoFEZA6-GPuIuQzHEun7FeAg=" alt="God's gift to burgers.">
+      <img width="150" height="150" src="img/pork.jpg" alt="God's gift to burgers.">
       </div>
       <div class="grid-item"><p>Breaded Pork Chops</p><p>Great for a wholesome family dinners or gatherings.</p></div>
       <div class="grid-item">
@@ -34,7 +34,7 @@ include '../partials/nav.php';
     <h2>Chicken</h2>
     <div class="grid-container">
       <div class="grid-item">
-      <img width="150" height="150" src="https://cdn.vox-cdn.com/thumbor/15Y6PNEliwJ9PK4lqsgQoMuJYPg=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/13465124/Fortnite___23_11_2018_13_40_07__2_.jpg" alt="BAWK BAWK">
+      <img width="150" height="150" src="img/chicken.jpg" alt="BAWK BAWK">
       </div>
       <div class="grid-item"><p>Boneless/Skinless Chicken Breast</p><p>Wonderfull for all purpose meals. Can be used for your chicken tacos, fettucini alfredo, or even your protein sourcce for macro conscious lifters.</p></div>
       <div class="grid-item">
@@ -47,7 +47,7 @@ include '../partials/nav.php';
     <h2>Turkey</h2>
     <div class="grid-container">
       <div class="grid-item">
-      <img width="150" height="150" src="https://res.cloudinary.com/teepublic/image/private/s--qLXoL8GA--/t_Preview/b_rgb:ffffff,c_limit,f_jpg,h_630,q_90,w_630/v1536751202/production/designs/3144110_0.jpg" alt="Gobble Gobble">
+      <img width="150" height="150" src="img/turkey.jpg" alt="Gobble Gobble">
       </div>
       <div class="grid-item"><p>Ground Turkey</p><p>Great choice for a more healthy alternative for meatballs or burgers.</p></div>
       <div class="grid-item">
@@ -60,7 +60,7 @@ include '../partials/nav.php';
     <h2>Fish</h2>
     <div class="grid-container">
       <div class="grid-item">
-      <img width="150" height="150" src="https://th.bing.com/th/id/R.b3edc1fd663c9457a338d20e3d44f9fc?rik=%2b3tIeIHmia3Tww&pid=ImgRaw&r=0" alt="Fish are friends, not food">
+      <img width="150" height="150" src="img/fish.jpg" alt="Fish are friends, not food">
       </div>
       <div class="grid-item"><p>Salmon Fillets. Wild Alaskan Salmon.</p><p>Healthy meat alternative for a reduction of red meat products.</p><p>Great for grilling or pan searing on a bed of rice.</p></div>
       <div class="grid-item">

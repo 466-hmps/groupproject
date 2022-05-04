@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <a href = "https://icons.iconarchive.com/icons/google/noto-emoji-food-drink/1024/32378-meat-on-bone-icon.png">
-	<img width="150" height="100" src = "https://icons.iconarchive.com/icons/google/noto-emoji-food-drink/1024/32378-meat-on-bone-icon.png">
+    <a href="index.php">
+	<img height="150" width="150" src="img/bonemeat.png">
 	</a>
     <h1 class="fancytext">The Meat Hut</h1>
     <h2 class="fancytext">The only place to satisfy your craving!</h2>
