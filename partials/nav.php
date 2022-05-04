@@ -1,19 +1,19 @@
-    <a href = "index.php">
-	<div style = "margin-left:1%;">Home
+    <div class="nav fancytext">
+        <ul class="navlist">
+            <li>
+                <a href = "index.php">Home</a>
+            </li>
+            <li>
+                <a href = "products.php">Products</a>
+            </li>
+            <li>
+                <a href = "cart.php">View Cart</a>
+            </li>
+            <li>
+                <a href = "checkout.php">Checkout</a>
+            </li>
+            <li>
+                <a href = "login.php">Login</a>
+            </li>
+        </ul>
     </div>
-	</a>
-    
-    <a href = "products.php">
-	<div style = "position:relative; left:15%; top:-35px;">Products
-    </div>
-	</a>
-
-    <a href = "checkout.php">
-	<div style = "position:relative; left:85%; top:-75px;">Checkout
-    </div>
-	</a>
-
-    <a href = "login.php">
-	<div style = "position:relative; left:85%; top:-200px;">Login
-    </div>
-	</a>

@@ -1,21 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        h1 {text-align: center;}
-        h2 {text-align: center;}
-        div {font-size: 25px;}
-        p {font-size: 20px;}
-
-        body{font-family: Copperplate, Papyrus, fantasy;}
-
-    </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <body style="background-color:#edd58a;"></body>
-
     <title>466 Group Project</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <a href = "https://icons.iconarchive.com/icons/google/noto-emoji-food-drink/1024/32378-meat-on-bone-icon.png">
