@@ -47,7 +47,7 @@
     <title>466 Group Project</title>
 </head>
 <body>
-<a href = "http://students.cs.niu.edu/~z1895440/466Final.php">Home</a>
+<?php include '../partials/nav.php'; ?>
 <form action="http://students.cs.niu.edu/~z1895440/466Final.php" method="POST">
 <div class="login" style="">
       <label for="uname"><b>Username</b></label>

@@ -26,25 +26,7 @@
 
     <hr><hr>
 
-    <a href = "http://students.cs.niu.edu/~z1895440/466Final.php">
-	<div style = "margin-left:1%;">Home
-    </div>
-	</a>
-    
-    <a href = "http://students.cs.niu.edu/~z1895440/storepage.php">
-	<div style = "position:relative; left:15%; top:-35px;">Store Page
-    </div>
-	</a>
-
-    <a href = "http://students.cs.niu.edu/~z1895440/checkout.php">
-	<div style = "position:relative; left:85%; top:-75px;">Checkout
-    </div>
-	</a>
-
-    <a href = "http://students.cs.niu.edu/~z1895440/login.php">
-	<div style = "position:relative; left:85%; top:-200px;">Login
-    </div>
-	</a>
+<?php include '../partials/nav.php'; ?>
     
 </body>
 </html>
