@@ -21,9 +21,10 @@ input[type=text], input[type=password] {
       box-sizing: border-box;
 }
 button{
-    padding: 14px 20px;
-      margin: 8px 0;
-    width: 75%;
+    padding: 1em 0 2em 0;
+    margin:0;
+    height: 2em;
+    width: 100%;
     background-color: #73AD21;
     border: none;
     color: white;
@@ -39,8 +40,17 @@ button{
     align-items: center;
     margin-bottom: 20px;
 }
+.login span{
+    display: inline-block;
+    width: 47%;
+    padding: 0;
+    margin: 0;
+}
 .fancytext {
     font-family: Copperplate, Papyrus, fantasy;
+}
+.psw {
+    text-align: center;
 }
 
 /* THIS IS THE NAV */
