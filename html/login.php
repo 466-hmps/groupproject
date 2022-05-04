@@ -1,5 +1,5 @@
 <?php 
-$title = "Home";
+$title = "Login";
 include '../partials/header.php';
 include '../partials/nav.php'; 
 ?>
