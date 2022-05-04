@@ -46,6 +46,10 @@ catch(PDOexception $e) {
 
     <a href = "http://students.cs.niu.edu/~z1689918/groupproject/html/storepage.php">
     <div style = "margin-left:1%;">Home</div></a>
+    <a href = "http://students.cs.niu.edu/~z1689918/groupproject/html/storepage.php">
+    <div style='position:relative; left:90%;'>View Cart</div></a>
+    <a href = "http://students.cs.niu.edu/~z1689918/groupproject/html/storepage.php">
+    <div style='position:relative; left:90%;'>Checkout</div></a>
     <h1>Products</h1>
 
     <h2>Produt Type</h2>
