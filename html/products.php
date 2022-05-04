@@ -26,7 +26,13 @@
           font-size: 30px;
           text-align: left;
         }
+        .nav{
+            font-family: Copperplate, Papyrus, fantasy;
+            text-align: center;
+            font-size: 4em;
+        }
         body{background-color:#edd58a;}
+
     </style>
 </head>
 
