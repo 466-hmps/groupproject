@@ -17,5 +17,5 @@
 <?php include '../partials/nav.php'; ?>
     <hr>
     <p>As a humble group of butchers, we seek to deliver only the finest of meats to satisfy true carnal appetite. </p>
-</body>
-</html>
+
+<?php include '../partials/footer.php'; ?>

@@ -3,6 +3,10 @@ body{
     margin:auto;
     background-color:#edd58a;
 }
+.footer{
+    text-align: center;
+    font-size: smaller;
+}
 h1 {text-align: center;}
 h2 {text-align: center;}
 div {font-size: 25px;}

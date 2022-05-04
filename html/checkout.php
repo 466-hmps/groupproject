@@ -18,5 +18,4 @@
 
 <?php include '../partials/nav.php'; ?>
     
-</body>
-</html>
+<?php include '../partials/footer.php'; ?>
