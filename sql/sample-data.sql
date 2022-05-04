@@ -1,7 +1,7 @@
-INSERT INTO USER(ID, Email, Name, Address) VALUES
-  ('1', 'testemail@aol.com', 'Test User', 'Test address Test Drive, Test city, state, zip, country'),
-  ('2', 'marrugaloo@gmail.com', 'Michael Marrougi', 'None ya business, my city, IL, 12345, Merica'),
-  ('3', 'lehuta@faculty.niu.edu', 'Jon Lehuta', 'Somewhere here in, DeKalb, IL, 60115, USA');
+INSERT INTO USER(ID, Email, Name, Address, Password) VALUES
+  ('1', 'testemail@aol.com', 'Test User', 'Test address Test Drive, Test city, state, zip, country', 'test123'),
+  ('2', 'marrugaloo@gmail.com', 'Michael Marrougi', 'None ya business, my city, IL, 12345, Merica', 'user2'),
+  ('3', 'lehuta@faculty.niu.edu', 'Jon Lehuta', 'Somewhere here in, DeKalb, IL, 60115, USA', 'usertest');
 
 INSERT INTO EMPLOYEE(EmpID) VALUES
   ('2');
