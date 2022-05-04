@@ -1,0 +1,85 @@
+body{
+    max-width: 1200px;
+    margin:auto;
+    background-color:#edd58a;
+}
+.footer{
+    text-align: center;
+    font-size: smaller;
+}
+h1 {text-align: center;}
+h2 {text-align: center;}
+div {font-size: 25px;}
+p {font-size: 20px;}
+a {font-size: 30px;}
+input[type=text], input[type=password] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+}
+button{
+    padding: 14px 20px;
+      margin: 8px 0;
+    width: 75%;
+    background-color: #73AD21;
+    border: none;
+    color: white;
+}
+.login {
+    display: flex;
+    flex-wrap: wrap;
+    margin:auto;
+    width: 60%;
+    border: 3px solid black;
+    padding: 12px 20px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.fancytext {
+    font-family: Copperplate, Papyrus, fantasy;
+}
+
+/* THIS IS THE NAV */
+
+.navlist {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.navlist li
+ {
+    text-align: center;
+}
+.navlist li.current
+{
+
+}
+.navlist li a:hover
+ {
+    color:#00d9ff;
+}
+.navlist li:hover
+ {
+
+}
+.navlist li a
+ {
+    font-size: large;
+    font-weight: bold;
+    font-family: Copperplate, Papyrus, fantasy;
+    display: inline-block;
+}
+.navlist li.active a
+ {
+
+}
+.navlist li.active
+ {
+
+}
