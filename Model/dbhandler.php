@@ -276,14 +276,6 @@ function verifyUser($email, $password) {
 	$statement->execute();
 	$results = $statement->fetchAll();
 	$statement->closeCursor();
-
-	if ($password == $results[1]) {
-		return true;
-	}
-	else
-	{
-		return false;
-	}
 	return $results;
 }
 
