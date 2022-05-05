@@ -279,11 +279,28 @@ function verifyUser($email, $password) {
 	return $results;
 }
 
-function getUserInfo() {
-	//
+function getUserInfo($email) {
+	global $pdo;
+	$query = 'SELECT * FROM USER WHERE Email = :eml ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':eml',$email);
+	$statement->execute();
+	$results = $statement->fetchAll();
+	$statement->closeCursor();
+	return $results;
 }
 
-function getUserType() {
+function getUserType($email) {
 	global $pdo;
+	$UserDets = getUserInfo($email);
+	$idCheck = $UserDets[0][0];
+	echo "Value of idcheck = " . $idCheck;
+	$query = 'SELECT * FROM CUSTOMER WHERE CustID = :id ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':id',$idCheck);
+	$statement->execute();
+	$results = $statement->fetchAll();
+	$statement->closeCursor();
+	return $results;
 }
 ?>
