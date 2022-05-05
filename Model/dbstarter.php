@@ -2,7 +2,7 @@
 <?php
 global $pdo;
 require "../config/secrets.php";
-$dsn = "mysql:host=$dbhost;dbname=$dbname";
+$dsn = "mysql:host=" . $dbhost . ";dbname=" . $dbname;
 
 try {	
 	$pdo = new PDO($dsn, $dbusername, $dbpassword);
