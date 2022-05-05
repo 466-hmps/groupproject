@@ -106,3 +106,20 @@ button{
  {
 
 }
+table.cart
+{
+    border: 1px solid;
+    text-align: center;
+    padding: 1px;
+    width: 70%;
+    margin: auto;
+}
+.cart th, .cart td{
+    border: 1px solid;
+    text-align: center;
+    padding: 1px;
+}
+.cartheader
+{
+    text-align: center;
+}

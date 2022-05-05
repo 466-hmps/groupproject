@@ -4,15 +4,10 @@ $title = "Products";
 include '../partials/header.php';
 include '../partials/nav.php'; 
 include '../lib/library.php';
-echo "This page shows your current cart";
+echo "  <h3 class='cartheader'>This page shows your current cart</h3>";
 if(isset($_SESSION['userid']))
-{
-    $stmt = GetCart($_SESSION['userid']);
-    draw_table($stmt);
-}
-else {
+    draw_cart(GetCart($_SESSION['userid']));
+else
     echo "  <p>Your cart is empty. Please login to view your cart.</p>";
-}
-//customer not logged in. please login
 include '../partials/footer.php'; 
 ?>
