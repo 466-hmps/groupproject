@@ -41,4 +41,23 @@ function draw_cart($rows)
     }
     echo "    </table>\n";
 }
+
+function draw_order($rows){
+    echo "    <table class='cart'\n";
+    echo "        <tr>\n";
+    echo "            <th>Order ID</th>\n";
+    echo "            <th>Customer ID</th>\n";
+    echo "            <th>Status</th>\n";
+    echo "            <th>Total</th>\n"; 
+    echo "        </tr>\n";
+    foreach ($rows as $row) {
+        echo "        <tr>\n";
+        echo "            <td>{$row['OrderID']}</td>\n";
+        echo "            <td>{$row['CustID']}</td>\n";
+        echo "            <td>{$row['Status']}</td>\n";
+        echo "            <td>{$row['Total']}</td>\n";  
+        echo "        </tr>\n";
+    }
+    echo "    </table>\n";
+}
 ?>

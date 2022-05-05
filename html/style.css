@@ -123,3 +123,8 @@ table.cart
 {
     text-align: center;
 }
+
+.subtotal
+{
+    text-align: right;
+}
