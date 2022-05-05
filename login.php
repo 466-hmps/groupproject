@@ -62,4 +62,48 @@
 
   </form>
 
+  <?php
+        if(isset($_POST['submit'])){
+            try {
+                session_start();	
+                $dsn = "mysql:host=courses;dbname=z1895440";
+                $username = "z1895440";
+                $password = "2002Jan29";
+                $pdo = new PDO($dsn, $username, $password);
+    
+                //if(isset($_POST['uemail'] == NULL && !isset($_POST['pswrd']))){
+                 //   exit('Error. Enter Username and Password.');
+               // }
+                $useremail = $_POST['uemail'];
+                $passwrd = $_POST['pswrd'];
+                $sql = "SELECT * FROM USER WHERE Email='$useremail' AND Password='$passwrd'";
+                $result = $pdo->prepare($sql);
+                  /*  $result->bind_param('string', $_POST['uemail']);
+                    $result->execute();
+                    $result->store_result();
+                    $result->close();*/
+                
+                $row = $result->fetchAll(PDO::FETCH_ASSOC);
+
+                if($row['Email'] != ""){
+                   // $row = $result->fetchAll(PDO::FETCH_ASSOC);
+                    if($row['Email'] == $uemail && $row['Password'] == $pswrd){
+                        echo "Logged in!";
+                        $_SESSION['Email'] = $row['Email'];
+                        $_SESSION['Name'] = $row['Name'];
+                        $_SESSION['ID'] = $row['ID'];
+						header('location: 466final.php');
+                    }else{
+                        echo "LOGIN ERROR";
+                    }
+                }
+                
+            }
+    
+            catch (PDOException $e) {
+                echo "<p>Connection to database failed: " . $e->getMessage(). "<p>";
+            }
+        }
+
+    ?>
 </body>
