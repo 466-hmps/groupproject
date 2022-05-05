@@ -7,7 +7,6 @@ CREATE TABLE USER (
 	Name VARCHAR(20) NOT NULL, -- Name of user
 	Address VARCHAR(100) NOT NULL, -- Address of user
 	Password VARCHAR(100) NOT NULL -- User Password
-
 );
 
 CREATE TABLE PRODUCT (
@@ -16,8 +15,8 @@ CREATE TABLE PRODUCT (
 	Title VARCHAR(15) NOT NULL, -- Name of product in store
 	Weight DECIMAL(3,2) NOT NULL, -- Weight of purchasing option
 	Price DECIMAL(4,2) NOT NULL, -- Price of product option
-	QTY INT NOT NULL -- Amount of Product available in Inventory
-
+	QTY INT NOT NULL, -- Amount of Product available in Inventory
+	Description VARCHAR(255)
 );
 
 CREATE TABLE EMPLOYEE (

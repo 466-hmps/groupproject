@@ -1,12 +1,11 @@
 
 <?php
 global $pdo;
-$username = "z1875567";
-$password = "2000Sep22";
-$dsn = "mysql:host=courses;dbname=z1875567";
+require "../config/secrets.php";
+$dsn = "mysql:host=$dbhost;dbname=$dbname";
 
 try {	
-	$pdo = new PDO($dsn, $username, $password);
+	$pdo = new PDO($dsn, $dbusername, $dbpassword);
 }
 
 catch (PDOException $e) {

@@ -15,6 +15,28 @@
  * RemoveProduct - Takes in a product ID and removes the row from the table.
  * Documentation will be provided where necessary line by line or in a comment block when necessary.
 */
+function GetID($email) {
+	global $pdo;
+	$query = "SELECT ID FROM USER WHERE Email = :email;";
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':email', $email);
+	$statement->execute();
+	$results = $statement->fetchColumn();
+    $statement->closeCursor();
+	return $results;
+}
+
+function GetPass($email) {
+	global $pdo;
+	$query = "SELECT Password FROM USER WHERE Email = :email;";
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':email', $email);
+	$statement->execute();
+	$results = $statement->fetchColumn();
+    $statement->closeCursor();
+	return $results;
+}
+
 function AllProducts() {
 	global $pdo;
 	$query = 'SELECT * FROM PRODUCT;';
