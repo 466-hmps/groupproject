@@ -2,8 +2,6 @@
 $title = "Products";
 include '../partials/header.php';
 include '../partials/nav.php'; 
-include '../Model/dbstarter.php';
-include '../Model/dbhandler.php';
 $products = AllProducts();
 $count = count($products);
 echo "    <h1>Products</h1>\n";
@@ -31,7 +29,9 @@ for($i=0; $i<$count; $i=$i+2) {
     }
     echo "    </div>\n";
 }
-
- include '../partials/footer.php'; ?>
-
-
+if(array_key_exists('add', $_GET))
+{
+    AddToCart($_SESSION['custid'], $_GET['prodid'], $_GET['amount']);
+}
+ include '../partials/footer.php'; 
+ ?>
