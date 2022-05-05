@@ -8,11 +8,12 @@ echo "  <h3 class='cartheader'>This page shows your current cart</h3>";
 if(isset($_SESSION['userid'])){
     draw_cart(GetCart($_SESSION['userid']));
     $rows = GetCart($_SESSION['userid']);
+    $total = 0;
     foreach ($rows as $row) {
-    $total = $row['Price'] * $row['Amt'];
+    $total += $row['Price'] * $row['Amt'];
     echo "<div class=\"subtotal\">";
-    echo "Order Subtotal: $total";
     }
+    echo "Order Subtotal: $total";
     echo "    </div>";
     echo "<form action = orders.php method='POST'>
     <input type='submit' name='create' value='Create Order' />

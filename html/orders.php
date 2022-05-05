@@ -9,10 +9,10 @@ include '../lib/library.php';
 
 <?php
     if(isset($_SESSION['userid'])){
+            $total = 0;
             $rows = GetCart($_SESSION['userid']);
             foreach ($rows as $row) {
-            $total = $row['Price'] * $row['Amt'];
-            echo "$total";
+            $total += $row['Price'] * $row['Amt'];
             }
         if(isset($_POST['create'])){
             CreateOrder($_SESSION['userid'], $total);

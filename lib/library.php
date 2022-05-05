@@ -60,4 +60,31 @@ function draw_order($rows){
     }
     echo "    </table>\n";
 }
+
+function draw_inv($rows){
+    echo "    <table class='cart'\n";
+    echo "        <tr>\n";
+    echo "            <th>Product ID</th>\n";
+    echo "            <th>Product Type</th>\n";
+    echo "            <th>Title</th>\n";
+    echo "            <th>Weight</th>\n"; 
+    echo "            <th>Price</th>\n";
+    echo "            <th>Quantity</th>\n";
+    echo "            <th>Description</th>\n";
+
+    echo "        </tr>\n";
+    foreach ($rows as $row) {
+        echo "        <tr>\n";
+        echo "            <td>{$row['ProdID']}</td>\n";
+        echo "            <td>{$row['ProdType']}</td>\n";
+        echo "            <td>{$row['Title']}</td>\n";
+        echo "            <td>{$row['Weight']}</td>\n";
+        echo "            <td>{$row['Price']}</td>\n";
+        echo "            <td>{$row['QTY']}</td>\n";
+        echo "            <td>{$row['Description']}</td>\n";
+
+        echo "        </tr>\n";
+    }
+    echo "    </table>\n";
+}
 ?>
