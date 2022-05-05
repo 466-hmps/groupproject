@@ -1,4 +1,5 @@
 <?php
+require_once "../Model/dbstarter.php";
 //	Group 17 - Phelps, Marrougi, Stannek, Hiltenbrand
 //	CSCI 466 - Professor Lehuta
 //	Group project - Web based store
@@ -15,24 +16,13 @@
  * RemoveProduct - Takes in a product ID and removes the row from the table.
  * Documentation will be provided where necessary line by line or in a comment block when necessary.
 */
-function GetID($email) {
+function GetUser($search, $by='ID') {
 	global $pdo;
-	$query = "SELECT ID FROM USER WHERE Email = :email;";
+	$query = "SELECT * FROM USER WHERE $by = :search ;";
 	$statement = $pdo->prepare($query);
-	$statement->bindValue(':email', $email);
+	$statement->bindValue(":search", $search);
 	$statement->execute();
-	$results = $statement->fetchColumn();
-    $statement->closeCursor();
-	return $results;
-}
-
-function GetPass($email) {
-	global $pdo;
-	$query = "SELECT Password FROM USER WHERE Email = :email;";
-	$statement = $pdo->prepare($query);
-	$statement->bindValue(':email', $email);
-	$statement->execute();
-	$results = $statement->fetchColumn();
+	$results = $statement->fetch(PDO::FETCH_ASSOC);
     $statement->closeCursor();
 	return $results;
 }
@@ -120,13 +110,14 @@ function RemoveProduct($ProdID) {
 	$statement->closeCursor();
 }
 
-/** Cart Functions:
+/**
  * AddToCart - takes in a product ID and a number and inserts a row to the table detailing the product and a qty with the customer's details as well.
- * ModfiyCartQty - takes in cart info and modifies the selected row for qty.
- * RMFromCart - takes in a product ID and the customer's info, and removes the identified row from the table.
- * ShowCart - takes in the customer info, and returns the resulting rows to the requesting page.
- * ClearCart - takes in the custimer info, and clears all rows from their cart.
- * Documentation will be provided where necessary line by line or in a comment block when necessary.
+ * 
+ * @param $CustID customer id
+ * @param $ProdID product id
+ * @param $Amt amount to add to cart
+ * 
+ * @return int Number of rows inserted into Cart table
  */
 function AddToCart($CustID, $ProdID, $Amt) {
 	global $pdo;
@@ -137,8 +128,18 @@ function AddToCart($CustID, $ProdID, $Amt) {
 	$statement->bindValue(':amt', $Amt);
 	$statement->execute();
     $statement->closeCursor();
+	return $statement->rowCount();
 }
 
+/**
+ * ModfiyCartQty - takes in cart info and modifies the selected row for qty.
+ * 
+ * @param $CustID customer id
+ * @param $ProdID product id
+ * @param $Amt amount to add to cart
+ * 
+ * @return int Number of rows inserted into Cart table
+ */
 function ModifyCartQty($CustID, $ProdID, $Amt) {
 	global $pdo;
 	$query = 'UPDATE CART SET Amt = :amt WHERE CustID = :CustID AND ProdID = :pid ;';
@@ -148,8 +149,17 @@ function ModifyCartQty($CustID, $ProdID, $Amt) {
 	$statement->bindValue(':pid',$ProdID);
 	$statement->execute();
 	$statement->closeCursor();
+	return $statement->rowCount();
 }
 
+/**
+ * RMFromCart - takes in a product ID and the customer's info, and removes the identified row from the table.
+ * 
+ * @param $CustID customer id
+ * @param $ProdID product id
+ * 
+ * @return int Number of rows inserted into Cart table
+ */
 function RMFromCart($CustID, $ProdID) {
 	global $pdo;
 	$query = 'DELETE FROM CART WHERE ProdID = :prod AND CustID = :CustID ;';
@@ -158,19 +168,39 @@ function RMFromCart($CustID, $ProdID) {
 	$statement->bindValue(':CustID',$CustID);
 	$statement->execute();
 	$statement->closeCursor();
+	return $statement->rowCount();
 }
 
-function ShowCart($CustID) {
+/**
+ * GetCart - takes in the customer info, and returns the resulting rows to the requesting page.
+ * 
+ * @param $CustID customer id
+ * 
+ * @return int Number of rows inserted into Cart table
+ */
+function GetCart($CustID) {
 	global $pdo;
-	$query = 'SELECT * FROM CART WHERE CustID = :CustID ;';
+	$query = <<<SQL
+	SELECT * FROM CART 
+		INNER JOIN PRODUCT USING (ProdID)
+		WHERE CustID = :CustID ;
+	SQL;
 	$statement = $pdo->prepare($query);
 	$statement->bindValue(':CustID',$CustID);
 	$statement->execute();
-	$results = $statement->fetchAll();
+	$results = $statement->fetchAll(PDO::FETCH_ASSOC);
 	$statement->closeCursor();
 	return $results;
 }
 
+/**
+ * ClearCart - takes in the custimer info, and clears all rows from their cart.
+ * 
+ * @param $CustID customer id
+ * @param $ProdID product id
+ * 
+ * @return int Number of rows inserted into Cart table
+ */
 function ClearCart($CustID, $ProdID) {
 	global $pdo;
 	$query = 'DELETE FROM CART WHERE CustID = :CustID ;';
@@ -178,6 +208,7 @@ function ClearCart($CustID, $ProdID) {
 	$statement->bindValue(':CustID',$CustID);
 	$statement->execute();
 	$statement->closeCursor();
+	return $statement->rowCount();
 }
 
 /** Order Functions:

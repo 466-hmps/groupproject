@@ -1,6 +1,3 @@
-<?php 
-session_start(); 
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +15,5 @@ session_start();
     <h2 class="fancytext">The only place to satisfy your craving!</h2>
 
 <?php
-    include "../Model/dbstarter.php";
-    include "../Model/dbhandler.php";
+    require_once "../Model/dbhandler.php";
 ?>

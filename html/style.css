@@ -70,7 +70,7 @@ button{
 
 .navlist {
     display: grid;
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto auto;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -105,4 +105,21 @@ button{
 .navlist li.active
  {
 
+}
+table.cart
+{
+    border: 1px solid;
+    text-align: center;
+    padding: 1px;
+    width: 70%;
+    margin: auto;
+}
+.cart th, .cart td{
+    border: 1px solid;
+    text-align: center;
+    padding: 1px;
+}
+.cartheader
+{
+    text-align: center;
 }
