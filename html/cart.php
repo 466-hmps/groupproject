@@ -7,7 +7,7 @@ include '../lib/library.php';
 echo "This page shows your current cart";
 if(isset($_SESSION['userid']))
 {
-    $stmt = ShowCart($_SESSION['userid']);
+    $stmt = GetCart($_SESSION['userid']);
     draw_table($stmt);
 }
 else {
