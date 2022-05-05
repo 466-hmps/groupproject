@@ -1,4 +1,5 @@
 <?php 
+require_once '../lib/session.php';
 $title = "Home";
 include '../partials/header.php';
 include '../partials/nav.php'; 

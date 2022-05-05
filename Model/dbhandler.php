@@ -1,4 +1,5 @@
 <?php
+require_once "../Model/dbstarter.php";
 //	Group 17 - Phelps, Marrougi, Stannek, Hiltenbrand
 //	CSCI 466 - Professor Lehuta
 //	Group project - Web based store
@@ -15,24 +16,13 @@
  * RemoveProduct - Takes in a product ID and removes the row from the table.
  * Documentation will be provided where necessary line by line or in a comment block when necessary.
 */
-function GetID($email) {
+function GetUser($search, $by='ID') {
 	global $pdo;
-	$query = "SELECT ID FROM USER WHERE Email = :email;";
+	$query = "SELECT * FROM USER WHERE $by = :search ;";
 	$statement = $pdo->prepare($query);
-	$statement->bindValue(':email', $email);
+	$statement->bindValue(":search", $search);
 	$statement->execute();
-	$results = $statement->fetchColumn();
-    $statement->closeCursor();
-	return $results;
-}
-
-function GetPass($email) {
-	global $pdo;
-	$query = "SELECT Password FROM USER WHERE Email = :email;";
-	$statement = $pdo->prepare($query);
-	$statement->bindValue(':email', $email);
-	$statement->execute();
-	$results = $statement->fetchColumn();
+	$results = $statement->fetch(PDO::FETCH_ASSOC);
     $statement->closeCursor();
 	return $results;
 }
@@ -166,7 +156,7 @@ function ShowCart($CustID) {
 	$statement = $pdo->prepare($query);
 	$statement->bindValue(':CustID',$CustID);
 	$statement->execute();
-	$results = $statement->fetchAll();
+	$results = $statement->fetchAll(PDO::FETCH_ASSOC);
 	$statement->closeCursor();
 	return $results;
 }

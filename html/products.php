@@ -1,4 +1,5 @@
 <?php 
+require_once '../lib/session.php';
 $title = "Products";
 include '../partials/header.php';
 include '../partials/nav.php'; 
@@ -31,7 +32,7 @@ for($i=0; $i<$count; $i=$i+2) {
 }
 if(array_key_exists('add', $_GET))
 {
-    AddToCart($_SESSION['custid'], $_GET['prodid'], $_GET['amount']);
+    AddToCart($_SESSION['userid'], $_GET['prodid'], $_GET['amount']);
 }
  include '../partials/footer.php'; 
  ?>

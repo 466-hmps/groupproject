@@ -1,6 +1,3 @@
-<?php 
-session_start(); 
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +14,15 @@ session_start();
     <h1 class="fancytext">The Meat Hut</h1>
     <h2 class="fancytext">The only place to satisfy your craving!</h2>
 
+    <h3>GET</h3>
+    <pre><?php print_r($_GET); ?></pre>
+
+    <h3>POST</h3>
+    <pre><?php print_r($_POST); ?></pre>
+
+    <h3>Session</h3>
+    <pre><?php print_r($_SESSION); ?></pre>
+
 <?php
-    include "../Model/dbstarter.php";
-    include "../Model/dbhandler.php";
+    require_once "../Model/dbhandler.php";
 ?>
