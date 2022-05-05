@@ -1,3 +1,6 @@
+<?php 
+session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,3 +16,8 @@
 	</a>
     <h1 class="fancytext">The Meat Hut</h1>
     <h2 class="fancytext">The only place to satisfy your craving!</h2>
+
+<?php
+    include "../Model/dbstarter.php";
+    include "../Model/dbhandler.php";
+?>
