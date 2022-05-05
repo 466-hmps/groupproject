@@ -21,7 +21,6 @@ else {
 		else {
 			$errormessage = "Invalid Password. Please enter your password.";
 		}
-		echo "UserType = " . getUserType($_POST['uemail']);
 	}
 }
 $title = "Login";
