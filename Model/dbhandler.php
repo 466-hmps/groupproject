@@ -149,7 +149,7 @@ function ModifyCartQty($CustID, $ProdID, $Amt) {
 	$statement->bindValue(':pid',$ProdID);
 	$statement->execute();
 	$statement->closeCursor();
-	return $statement->(rowCount());
+	return $statement->rowCount();
 }
 
 /**
