@@ -202,4 +202,34 @@ function AddItemToOrder($OrderID, $ProdID, $Amt) {
 /** User Functions:
  * 
  */
+function AddUser($email, $name, $addr, $password) {
+	global $pdo;
+	$query = 'INSERT INTO USER (Email, Name, Address, Password) VALUES ( :eml , :nme, :addr, :pass );';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':eml',$email);
+	$statement->bindValue(':nme',$name);
+	$statement->bindValue(':addr',$addr);
+	$statement->bindValue(':pass',$password);
+	$statement->execute();
+	$statement->closeCursor();
+}
+
+function VerifyUser($email, $password) {
+	global $pdo;
+	$query = 'SELECT * FROM USER WHERE Email = :eml ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':eml',$email);
+	$statement->execute();
+	$results = $statement->fetchAll();
+	$statement->closeCursor();
+
+	if ($password == $results[1]) {
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+	return $results;
+}
 ?>
