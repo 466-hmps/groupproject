@@ -22,7 +22,7 @@ include '../lib/library.php';
             echo "<form action= 'orders.php' method='POST'>";
             echo "<input type='submit' name='cancel' value='Cancel Orders' />";
             echo "</form>";
-            if(isset($_POST['cancel'])){ //NEEDS WORK
+            if(isset($_POST['cancel'])){ 
                 ClearOrders($_SESSION['userid']);
                 
             }   
