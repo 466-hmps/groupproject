@@ -15,7 +15,15 @@ else {
 		if (password_verify($_POST['pswrd'], $user['Password'])) {
 			$_SESSION['userid'] = $user['ID'];
 			$Checkers = verifyUser($_POST['uemail'], $user['Password']);
-			$_SESSION['Checkmate'] = $Checkers;
+			if ($Checkers == true)
+			{
+				$wah = "Ladies and gentlemen, we got him.";
+			}
+			else
+			{
+				$wah = "Mission Failed, we'll get him next time.";
+			}
+			$_SESSION['Checkmate'] = $wah;
 			//redirect to homepage
 			header('Location: http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']) . '/');
 			exit;
