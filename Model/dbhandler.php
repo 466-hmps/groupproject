@@ -93,7 +93,7 @@ function ModifyProductPrice($ProdID, $Price) {
 }
 function ModifyProductQty($ProdID, $Qty) {
 	global $pdo;
-	$query = 'UPDATE PRODUCT SET Qty = :qty WHERE ProdID = :pid ;';
+	$query = 'UPDATE PRODUCT SET Qty = (QTY + :qty) WHERE ProdID = :pid ;';
     $statement = $pdo->prepare($query);
 	$statement->bindValue(':pid', $ProdID);
 	$statement->bindValue(':qty', $Qty);
@@ -201,7 +201,7 @@ function GetCart($CustID) {
  * 
  * @return int Number of rows inserted into Cart table
  */
-function ClearCart($CustID, $ProdID) {
+function ClearCart($CustID) {
 	global $pdo;
 	$query = 'DELETE FROM CART WHERE CustID = :CustID ;';
 	$statement = $pdo->prepare($query);
@@ -235,12 +235,23 @@ function ModifyOrder($stat) {
 	$statement->closeCursor();
 	return $statement->rowCount();
 }
-
-function ShowOrder($orderID) {
+=======
+function ClearOrders($CustID){
 	global $pdo;
-	$query = 'SELECT * FROM ORDERITEMS WHERE OrderID = :ordid ;';
+	$query = 'DELETE FROM ORDERS WHERE CustID = :CustID;';
 	$statement = $pdo->prepare($query);
-	$statement->bindValue(':ordid',$orderID);
+	$statement->bindValue(':CustID',$CustID);
+	$statement->execute();
+	$statement->closeCursor();
+	return $statement->rowCount();
+}
+
+
+function ShowOrder($custID) {
+	global $pdo;
+	$query = 'SELECT * FROM ORDERS WHERE CustID = :ordid ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':ordid',$custID);
 	$statement->execute();
 	$results = $statement->fetchAll();
 	$statement->closeCursor();
@@ -257,6 +268,8 @@ function AddItemToOrder($OrderID, $ProdID, $Amt) {
 	$statement->execute();
 	$statement->closeCursor();
 }
+
+
 
 /** User Functions:
  * addUser - takes in data on the user and creates a profile with their email, password, and other crucial details
