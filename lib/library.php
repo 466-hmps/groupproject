@@ -29,6 +29,7 @@ function draw_cart($rows)
     echo "            <th>Weight</th>\n";
     echo "            <th>Price</th>\n";
     echo "            <th>Amt</th>\n"; 
+    echo "            <th>Remove Item</th>\n";
     echo "        </tr>\n";
     foreach ($rows as $row) {
         echo "        <tr>\n";
@@ -37,6 +38,10 @@ function draw_cart($rows)
         echo "            <td>{$row['Weight']}</td>\n";
         echo "            <td>{$row['Price']}</td>\n";
         echo "            <td>{$row['Amt']}</td>\n";
+        echo "            <td><form action='cart.php' method='POST'>";
+        echo "                  <input type='hidden' name='RemoveItem' value='" . $row['ProdID'] . "'>";
+        echo "                  <input type='submit' value='Delete'>";
+        echo "                  </form></td>";
         echo "        </tr>\n";
     }
     echo "    </table>\n";
