@@ -18,8 +18,8 @@ if(isset($_SESSION['userid'])){
     }
     echo "Order Subtotal: $total";
     echo "    </div>";
-    echo "<form action = orders.php method='POST'>
-    <input type='submit' name='create' value='Create Order' />
+    echo "<form action = checkout.php method='POST'>
+    <input type='submit' name='create' value='Checkout' />
     </form>";
 
     echo "<form action = cart.php method='GET'>
