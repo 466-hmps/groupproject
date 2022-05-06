@@ -290,13 +290,11 @@ function getUserInfo($email) {
 	return $results;
 }
 
-function getUserType($email) {
+function getUserType($ID) {
 	global $pdo;
-	$UserDets = getUserInfo($email);
-	print_r($UserDets);
-	$query = 'SELECT * FROM CUSTOMER WHERE CustID = :id ;';
+	$query = 'SELECT * FROM CUSTOMER WHERE ID = :id ;';
 	$statement = $pdo->prepare($query);
-$statement->bindValue(':id','1'/*$UserDets*/);
+	$statement->bindValue(':id',$ID);
 	$statement->execute();
 	$results = $statement->fetchAll();
 	$statement->closeCursor();
