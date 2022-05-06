@@ -9,7 +9,7 @@ include '../partials/nav.php';
     if(isset($_SESSION['userid']))
         {
             $wah = getUserType($_SESSION['userid']);
-            echo "UserType = " . $wah['Email'];
+            echo "UserType = " . $wah;
         }
     ?>
 <?php include '../partials/footer.php'; ?>
