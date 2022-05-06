@@ -235,7 +235,7 @@ function ModifyOrder($stat) {
 	$statement->closeCursor();
 	return $statement->rowCount();
 }
-=======
+
 function ClearOrders($CustID){
 	global $pdo;
 	$query = 'DELETE FROM ORDERS WHERE CustID = :CustID;';
