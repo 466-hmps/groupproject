@@ -322,19 +322,12 @@ function getUserInfo($email) {
 
 function getUserType($ID) {
 	global $pdo;
-	$query = 'SELECT * FROM CUSTOMER WHERE ID = :id ;';
+	$query = 'SELECT * FROM EMPLOYEE WHERE ID = :id ;';
 	$statement = $pdo->prepare($query);
 	$statement->bindValue(':id',$ID);
 	$statement->execute();
 	$results = $statement->fetchAll();
 	$statement->closeCursor();
-	if ($results == NULL)
-	{
-		return 'Employee';
-	}
-	else
-	{
-		return 'Customer';
-	}
+	return $results->rowCount();
 }
 ?>
