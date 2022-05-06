@@ -21,15 +21,11 @@ include '../lib/library.php';
 
             echo "<form action=orders.php method='GET'>";
             echo "<input type='submit' name='cancel' value='Cancel Orders' />";
-            if(isset($_GET['cancel'])){
+            echo "</form>";
+            if(isset($_GET['cancel'])){ //NEEDS WORK
                 ClearOrders($_SESSION['userid']);
-            }
-            
-            
-            
+            }   
         }
-
-
 ?>
 
 <?php include '../partials/footer.php'; ?>

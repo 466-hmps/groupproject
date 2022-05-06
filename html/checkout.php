@@ -7,8 +7,6 @@ include '../lib/library.php';
 
 ?>
 
-<?php
-
-?>
+<form action=checkout.php method="POST">
 
 <?php include '../partials/footer.php'; ?>

@@ -93,7 +93,7 @@ function ModifyProductPrice($ProdID, $Price) {
 }
 function ModifyProductQty($ProdID, $Qty) {
 	global $pdo;
-	$query = 'UPDATE PRODUCT SET Qty = :qty WHERE ProdID = :pid ;';
+	$query = 'UPDATE PRODUCT SET Qty = (QTY + :qty) WHERE ProdID = :pid ;';
     $statement = $pdo->prepare($query);
 	$statement->bindValue(':pid', $ProdID);
 	$statement->bindValue(':qty', $Qty);
