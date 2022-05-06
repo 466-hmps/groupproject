@@ -18,12 +18,11 @@ echo "<option value='1'>Ground Beef</option>
 echo "<input type='number' name='QTY' value='QTY'>";
 echo "<input type='submit' name='add' value='Add to Inventory' />";
 echo "</form>";
-
 if(isset($_POST['add'])){
     ModifyProductQty($_POST['Products'], $_POST['QTY']);
 }
 }else{
-    echo "You must login to see this page";
+    echo "You are unauthorized to access the page";
 }
 ?>
 

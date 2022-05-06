@@ -328,6 +328,16 @@ function getUserType($ID) {
 	$statement->execute();
 	$results = $statement->fetchAll();
 	$statement->closeCursor();
-	return $results->rowCount();
+	return $results;
+}
+
+function isEmployee($ID): bool  {
+    global $pdo;
+    $query = 'SELECT COUNT(*) FROM EMPLOYEE WHERE ID = ? ;';
+    $statement = $pdo->prepare($query);
+    $statement->execute();
+    $employeeExists = (int)$statement->fetch() != 0;
+    $statement->closeCursor();
+    return $employeeExists;
 }
 ?>
