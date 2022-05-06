@@ -6,6 +6,9 @@ include '../partials/nav.php';
 include '../lib/library.php';
 echo "  <h3 class='cartheader'>This page shows your current cart</h3>";
 if(isset($_SESSION['userid'])){
+    if(isset($_POST['RemoveItem'])) {
+        RMFromCart($CustID, $_POST['RemoveItem']);
+    }
     draw_cart(GetCart($_SESSION['userid']));
     $rows = GetCart($_SESSION['userid']);
     $total = 0;
