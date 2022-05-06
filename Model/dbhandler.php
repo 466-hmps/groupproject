@@ -233,6 +233,7 @@ function ModifyOrder($stat) {
 	$statement->bindValue(':stat',$stat);
 	$statement->execute();
 	$statement->closeCursor();
+	return $statement->rowCount();
 }
 
 function ShowOrder($orderID) {
