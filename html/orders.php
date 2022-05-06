@@ -19,12 +19,15 @@ include '../lib/library.php';
         }
             draw_order(ShowOrder($_SESSION['userid']));
 
-            echo "<form action=orders.php method='GET'>";
+            echo "<form action= 'orders.php' method='POST'>";
             echo "<input type='submit' name='cancel' value='Cancel Orders' />";
             echo "</form>";
-            if(isset($_GET['cancel'])){ //NEEDS WORK
+            if(isset($_POST['cancel'])){ 
                 ClearOrders($_SESSION['userid']);
+                
             }   
+        }else{
+            echo "You must log in to see this page";
         }
 ?>
 

@@ -238,7 +238,8 @@ function ModifyOrder($stat) {
 
 function ClearOrders($CustID){
 	global $pdo;
-	$query = 'DELETE FROM ORDERS WHERE CustID = :CustID;';
+
+	$query = 'SET FOREIGN_KEY_CHECKS=0; DELETE FROM ORDERS WHERE CustID = :CustID; SET FOREIGN_KEY_CHECKS=1;';
 	$statement = $pdo->prepare($query);
 	$statement->bindValue(':CustID',$CustID);
 	$statement->execute();

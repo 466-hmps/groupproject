@@ -4,7 +4,7 @@ $title = "Checkout";
 include '../partials/header.php';
 include '../partials/nav.php'; 
 include '../lib/library.php';
-
+if(isset($_SESSION['userid'])){
 draw_inv(AllProducts());
 
 echo "<form action='inventory.php' method='POST'>";
@@ -21,6 +21,9 @@ echo "</form>";
 
 if(isset($_POST['add'])){
     ModifyProductQty($_POST['Products'], $_POST['QTY']);
+}
+}else{
+    echo "You must login to see this page";
 }
 ?>
 
