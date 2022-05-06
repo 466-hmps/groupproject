@@ -14,6 +14,8 @@ else {
 		$user = GetUser($_POST['uemail'], "email");
 		if (password_verify($_POST['pswrd'], $user['Password'])) {
 			$_SESSION['userid'] = $user['ID'];
+			$Checkers = verifyUser($_POST['uemail'], $user['Password']);
+			$_SESSION['Checkmate'] = $Checkers;
 			//redirect to homepage
 			header('Location: http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']) . '/');
 			exit;

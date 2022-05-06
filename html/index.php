@@ -10,6 +10,7 @@ include '../partials/nav.php';
         {
             $wah = getUserType($_SESSION['userid']);
             echo "UserType = " . $wah;
+            echo $_SESSION['Checkmate'];
         }
     ?>
 <?php include '../partials/footer.php'; ?>

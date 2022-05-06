@@ -253,7 +253,8 @@ function AddItemToOrder($OrderID, $ProdID, $Amt) {
 }
 
 /** User Functions:
- * addUser - 
+ * addUser - takes in data on the user and creates a profile with their email, password, and other crucial details
+ * verifyUser - takes in a user's email, 
  */
 
 function addUser($email, $name, $addr, $password) {
@@ -270,13 +271,19 @@ function addUser($email, $name, $addr, $password) {
 
 function verifyUser($email, $password) {
 	global $pdo;
-	$query = 'SELECT * FROM USER WHERE Email = :eml ;';
+	$query = 'SELECT Password FROM USER WHERE Email = :eml ;';
 	$statement = $pdo->prepare($query);
 	$statement->bindValue(':eml',$email);
 	$statement->execute();
 	$results = $statement->fetchAll();
 	$statement->closeCursor();
-	return $results;
+	if ($password == $results) {
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 function getUserInfo($email) {
