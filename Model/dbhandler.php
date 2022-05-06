@@ -293,7 +293,7 @@ function getUserInfo($email) {
 function getUserType($email) {
 	global $pdo;
 	$UserDets = getUserInfo($email);
-	echo "Value of idcheck = " . $UserDets[0]['ID'];
+	print_r($UserDets['ID']);
 	$query = 'SELECT * FROM CUSTOMER WHERE CustID = :id ;';
 	$statement = $pdo->prepare($query);
 	$statement->bindValue(':id',$UserDets);
