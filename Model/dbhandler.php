@@ -93,7 +93,7 @@ function ModifyProductPrice($ProdID, $Price) {
 }
 function ModifyProductQty($ProdID, $Qty) {
 	global $pdo;
-	$query = 'UPDATE PRODUCT SET Qty = :qty WHERE ProdID = :pid ;';
+	$query = 'UPDATE PRODUCT SET Qty = (QTY + :qty) WHERE ProdID = :pid ;';
     $statement = $pdo->prepare($query);
 	$statement->bindValue(':pid', $ProdID);
 	$statement->bindValue(':qty', $Qty);
@@ -201,7 +201,7 @@ function GetCart($CustID) {
  * 
  * @return int Number of rows inserted into Cart table
  */
-function ClearCart($CustID, $ProdID) {
+function ClearCart($CustID) {
 	global $pdo;
 	$query = 'DELETE FROM CART WHERE CustID = :CustID ;';
 	$statement = $pdo->prepare($query);
@@ -227,15 +227,33 @@ function CreateOrder($CustID, $total){
 	return $statement->rowCount();
 }
 
-function ModifyOrder() {
-	//
+function ModifyOrder($stat) {
+	global $pdo;
+	$query = 'UPDATE ORDERS SET Status = :stat ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':stat',$stat);
+	$statement->execute();
+	$statement->closeCursor();
+	return $statement->rowCount();
 }
 
-function ShowOrder($orderID) {
+function ClearOrders($CustID){
 	global $pdo;
-	$query = 'SELECT * FROM ORDERITEMS WHERE OrderID = :ordid ;';
+
+	$query = 'SET FOREIGN_KEY_CHECKS=0; DELETE FROM ORDERS WHERE CustID = :CustID; SET FOREIGN_KEY_CHECKS=1;';
 	$statement = $pdo->prepare($query);
-	$statement->bindValue(':ordid',$orderID);
+	$statement->bindValue(':CustID',$CustID);
+	$statement->execute();
+	$statement->closeCursor();
+	return $statement->rowCount();
+}
+
+
+function ShowOrder($custID) {
+	global $pdo;
+	$query = 'SELECT * FROM ORDERS WHERE CustID = :ordid ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':ordid',$custID);
 	$statement->execute();
 	$results = $statement->fetchAll();
 	$statement->closeCursor();
@@ -253,7 +271,70 @@ function AddItemToOrder($OrderID, $ProdID, $Amt) {
 	$statement->closeCursor();
 }
 
+
+
 /** User Functions:
- * 
+ * addUser - takes in data on the user and creates a profile with their email, password, and other crucial details
+ * verifyUser - Decommissioned for now
  */
+
+function addUser($email, $name, $addr, $password) {
+	global $pdo;
+	$query = 'INSERT INTO USER (Email, Name, Address, Password) VALUES ( :eml , :nme, :addr, :pass );';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':eml',$email);
+	$statement->bindValue(':nme',$name);
+	$statement->bindValue(':addr',$addr);
+	$statement->bindValue(':pass',$password);
+	$statement->execute();
+	$statement->closeCursor();
+}
+
+/*
+function verifyUser($email, $password) {
+	global $pdo;
+	$query = 'SELECT Password FROM USER WHERE Email = :eml ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':eml',$email);
+	$statement->execute();
+	$results = $statement->fetchAll();
+	$statement->closeCursor();
+	if ($password == $results) {
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+*/
+
+function getUserInfo($email) {
+	global $pdo;
+	$query = 'SELECT ID FROM USER WHERE Email = :eml ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':eml',$email);
+	$statement->execute();
+	$results = $statement->fetchAll();
+	$statement->closeCursor();
+	return $results;
+}
+
+function getUserType($ID) {
+	global $pdo;
+	$query = 'SELECT * FROM CUSTOMER WHERE ID = :id ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':id',$ID);
+	$statement->execute();
+	$results = $statement->fetchAll();
+	$statement->closeCursor();
+	if ($results == NULL)
+	{
+		return 'Employee';
+	}
+	else
+	{
+		return 'Customer';
+	}
+}
 ?>

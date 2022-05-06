@@ -25,4 +25,5 @@ if(isset($_POST['checkout']))
 }
 ?>
 
+
 <?php include '../partials/footer.php'; ?>
