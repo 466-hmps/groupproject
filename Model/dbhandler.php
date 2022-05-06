@@ -281,7 +281,7 @@ function verifyUser($email, $password) {
 
 function getUserInfo($email) {
 	global $pdo;
-	$query = 'SELECT * FROM USER WHERE Email = :eml ;';
+	$query = 'SELECT ID FROM USER WHERE Email = :eml ;';
 	$statement = $pdo->prepare($query);
 	$statement->bindValue(':eml',$email);
 	$statement->execute();
@@ -293,11 +293,10 @@ function getUserInfo($email) {
 function getUserType($email) {
 	global $pdo;
 	$UserDets = getUserInfo($email);
-	$idCheck = $UserDets[0];
-	echo "Value of idcheck = " . $idCheck[0];
+	echo "Value of idcheck = " . $UserDets;
 	$query = 'SELECT * FROM CUSTOMER WHERE CustID = :id ;';
 	$statement = $pdo->prepare($query);
-	$statement->bindValue(':id',$idCheck);
+	$statement->bindValue(':id',$UserDets);
 	$statement->execute();
 	$results = $statement->fetchAll();
 	$statement->closeCursor();
