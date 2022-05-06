@@ -226,8 +226,13 @@ function CreateOrder($CustID, $total){
 	$statement->closeCursor();
 }
 
-function ModifyOrder() {
-	//
+function ModifyOrder($stat) {
+	global $pdo;
+	$query = 'UPDATE ORDERS SET Status = :stat ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':stat',$stat);
+	$statement->execute();
+	$statement->closeCursor();
 }
 
 function ShowOrder($orderID) {
