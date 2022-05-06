@@ -224,6 +224,7 @@ function CreateOrder($CustID, $total){
 	$statement->bindValue(':tot',$total);
 	$statement->execute();
 	$statement->closeCursor();
+	return $statement->rowCount();
 }
 
 function ModifyOrder() {
