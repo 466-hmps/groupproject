@@ -226,6 +226,16 @@ function CreateOrder($CustID, $total){
 	$statement->closeCursor();
 }
 
+function ModifyOrder($stat) {
+	global $pdo;
+	$query = 'UPDATE ORDERS SET Status = :stat ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':stat',$stat);
+	$statement->execute();
+	$statement->closeCursor();
+	return $statement->rowCount();
+}
+=======
 function ClearOrders($CustID){
 	global $pdo;
 	$query = 'DELETE FROM ORDERS WHERE CustID = :CustID;';
@@ -234,12 +244,8 @@ function ClearOrders($CustID){
 	$statement->execute();
 	$statement->closeCursor();
 	return $statement->rowCount();
-
 }
 
-function ModifyOrder() {
-	//
-}
 
 function ShowOrder($custID) {
 	global $pdo;
@@ -266,6 +272,67 @@ function AddItemToOrder($OrderID, $ProdID, $Amt) {
 
 
 /** User Functions:
- * 
+ * addUser - takes in data on the user and creates a profile with their email, password, and other crucial details
+ * verifyUser - Decommissioned for now
  */
+
+function addUser($email, $name, $addr, $password) {
+	global $pdo;
+	$query = 'INSERT INTO USER (Email, Name, Address, Password) VALUES ( :eml , :nme, :addr, :pass );';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':eml',$email);
+	$statement->bindValue(':nme',$name);
+	$statement->bindValue(':addr',$addr);
+	$statement->bindValue(':pass',$password);
+	$statement->execute();
+	$statement->closeCursor();
+}
+
+/*
+function verifyUser($email, $password) {
+	global $pdo;
+	$query = 'SELECT Password FROM USER WHERE Email = :eml ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':eml',$email);
+	$statement->execute();
+	$results = $statement->fetchAll();
+	$statement->closeCursor();
+	if ($password == $results) {
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+*/
+
+function getUserInfo($email) {
+	global $pdo;
+	$query = 'SELECT ID FROM USER WHERE Email = :eml ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':eml',$email);
+	$statement->execute();
+	$results = $statement->fetchAll();
+	$statement->closeCursor();
+	return $results;
+}
+
+function getUserType($ID) {
+	global $pdo;
+	$query = 'SELECT * FROM CUSTOMER WHERE ID = :id ;';
+	$statement = $pdo->prepare($query);
+	$statement->bindValue(':id',$ID);
+	$statement->execute();
+	$results = $statement->fetchAll();
+	$statement->closeCursor();
+	if ($results == NULL)
+	{
+		return 'Employee';
+	}
+	else
+	{
+		return 'Customer';
+	}
+}
 ?>
