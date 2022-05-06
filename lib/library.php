@@ -41,4 +41,38 @@ function draw_cart($rows)
     }
     echo "    </table>\n";
 }
+function checkout_cart($rows)
+{
+    $totalProd;
+    $totalCart = 0;
+    echo "    <table class='cart'\n";
+    echo "        <tr>\n";
+    echo "            <th width=100>Picture</th>\n";
+    echo "            <th>Title</th>\n";
+    echo "            <th>Weight</th>\n";
+    echo "            <th>Price</th>\n";
+    echo "            <th>Amt</th>\n";
+    echo "            <th>Total</th>\n";    
+    echo "        </tr>\n";
+    foreach ($rows as $row) {
+        $totalProd = ($row['Price'] * $row['Amt']);
+        $totalCart = $totalCart + $totalProd;
+        echo "        <tr>\n";
+        echo "            <td width=100><img height=100 width=100 src='img/{$row['ProdType']}.jpg'></td>\n";
+        echo "            <td>{$row['Title']}</td>\n";
+        echo "            <td>{$row['Weight']}</td>\n";
+        echo "            <td>{$row['Price']}</td>\n";
+        echo "            <td>{$row['Amt']}</td>\n";
+        echo "            <td>$totalProd</td>\n";
+        echo "        </tr>\n";
+    }
+    echo "    </table>\n";
+    echo "  <table class='cart'>\n";
+    echo "          <tr>\n";
+    echo "              <th>Total</th>\n";
+    echo "              <td>$totalCart</td>\n";
+    echo "          </tr>\n";
+    echo "  </table>\n";
+    return $totalCart;
+}
 ?>
