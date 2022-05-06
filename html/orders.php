@@ -25,6 +25,8 @@ include '../lib/library.php';
             if(isset($_GET['cancel'])){ //NEEDS WORK
                 ClearOrders($_SESSION['userid']);
             }   
+        }else{
+            echo "You must log in to see this page";
         }
 ?>
 
